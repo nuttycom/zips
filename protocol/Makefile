@@ -69,6 +69,7 @@ auxsapling:
 
 sapling:
 	$(MAKE) auxsapling
+	mkdir -p $(PDFDIR)
 	mv -f aux/sapling.pdf $(PDFDIR)
 
 .PHONY: auxblossom blossom
@@ -81,6 +82,7 @@ auxblossom:
 
 blossom:
 	$(MAKE) auxblossom
+	mkdir -p $(PDFDIR)
 	mv -f aux/blossom.pdf $(PDFDIR)
 
 .PHONY: auxheartwood heartwood
@@ -93,6 +95,7 @@ auxheartwood:
 
 heartwood:
 	$(MAKE) auxheartwood
+	mkdir -p $(PDFDIR)
 	mv -f aux/heartwood.pdf $(PDFDIR)
 
 .PHONY: auxcanopy canopy
@@ -105,6 +108,7 @@ auxcanopy:
 
 canopy:
 	$(MAKE) auxcanopy
+	mkdir -p $(PDFDIR)
 	mv -f aux/canopy.pdf $(PDFDIR)
 
 .PHONY: auxnu5 nu5
@@ -117,6 +121,7 @@ auxnu5:
 
 nu5:
 	$(MAKE) auxnu5
+	mkdir -p $(PDFDIR)
 	mv -f aux/nu5.pdf $(PDFDIR)
 
 .PHONY: auxnu6 nu6
@@ -129,8 +134,8 @@ auxnu6:
 
 nu6:
 	$(MAKE) auxnu6
-	mv -f aux/nu6.pdf $(PDFDIR)
-	cp -f $(PDFDIR)/nu6.pdf $(PDFDIR)/protocol.pdf
+	mkdir -p $(PDFDIR)
+	mv -f aux/nu6.pdf $(PDFDIR)/protocol.pdf
 
 .PHONY: auxnu6-dark nu6-dark
 auxnu6-dark:
@@ -142,9 +147,9 @@ auxnu6-dark:
 
 nu6-dark:
 	$(MAKE) auxnu6-dark
-	mv -f aux/nu6-dark.pdf $(PDFDIR)
-	cp -f $(PDFDIR)/nu6-dark.pdf $(PDFDIR)/protocol-dark.pdf
+	mkdir -p $(PDFDIR)
+	mv -f aux/nu6-dark.pdf $(PDFDIR)/protocol-dark.pdf
 
 .PHONY: clean
 clean:
-	rm -f aux/* protocol.ver $(PDFDIR)/protocol.pdf $(PDFDIR)/protocol-dark.pdf $(PDFDIR)/nu5.pdf $(PDFDIR)/canopy.pdf $(PDFDIR)/heartwood.pdf $(PDFDIR)/blossom.pdf $(PDFDIR)/sapling.pdf
+	rm -f aux/* protocol.ver $(PDFDIR)
