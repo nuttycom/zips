@@ -129,7 +129,8 @@ auxnu6:
 
 nu6:
 	$(MAKE) auxnu6
-	mv -f aux/nu6.pdf $(PDFDIR)/protocol.pdf
+	mv -f aux/nu6.pdf $(PDFDIR)
+	cp -f $(PDFDIR)/nu6.pdf $(PDFDIR)/protocol.pdf
 
 .PHONY: auxnu6-dark nu6-dark
 auxnu6-dark:
@@ -141,7 +142,8 @@ auxnu6-dark:
 
 nu6-dark:
 	$(MAKE) auxnu6-dark
-	mv -f aux/nu6-dark.pdf $(PDFDIR)/protocol-dark.pdf
+	mv -f aux/nu6-dark.pdf $(PDFDIR)
+	cp -f $(PDFDIR)/nu6-dark.pdf $(PDFDIR)/protocol-dark.pdf
 
 .PHONY: clean
 clean:
