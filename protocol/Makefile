@@ -122,6 +122,7 @@ nu5:
 .PHONY: auxnu6 nu6
 auxnu6:
 	printf '\\toggletrue{isnusix}\n\\renewcommand{\\docversion}{Version %s [\\NUSixSpec]}\n' "$$(git describe --tags --abbrev=6)" |tee protocol.ver
+	pwd
 	mkdir -p aux
 	rm -f aux/nu6.*
 	cp mymakeindex.sh aux
@@ -129,12 +130,14 @@ auxnu6:
 
 nu6:
 	$(MAKE) auxnu6
+	pwd
 	mv -f aux/nu6.pdf $(PDFDIR)
 	cp -f $(PDFDIR)/nu6.pdf $(PDFDIR)/protocol.pdf
 
 .PHONY: auxnu6-dark nu6-dark
 auxnu6-dark:
 	printf '\\toggletrue{darkmode}\\toggletrue{isnusix}\n\\renewcommand{\\docversion}{Version %s [\\NUSixSpec]}\n' "$$(git describe --tags --abbrev=6)" |tee protocol.ver
+	pwd
 	mkdir -p aux
 	rm -f aux/nu6-dark.*
 	cp mymakeindex.sh aux
@@ -142,6 +145,7 @@ auxnu6-dark:
 
 nu6-dark:
 	$(MAKE) auxnu6-dark
+	pwd
 	mv -f aux/nu6-dark.pdf $(PDFDIR)
 	cp -f $(PDFDIR)/nu6-dark.pdf $(PDFDIR)/protocol-dark.pdf
 

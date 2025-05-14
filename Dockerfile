@@ -23,7 +23,10 @@ RUN pip install 'docutils==0.21.2' 'rst2html5==2.0.1'
 RUN git config --global --add safe.directory /zips
 
 # Use a fork so that we're running pinned code.
-RUN git clone -b develop https://github.com/Electric-Coin-Company/MultiMarkdown-6 && cd MultiMarkdown-6 && make release && cd build && make && make install
+RUN git clone -b develop https://github.com/Electric-Coin-Company/MultiMarkdown-6 && \
+  cd MultiMarkdown-6 && \
+  git branch master origin/master && \ # Makefile expects `master` branch to exist for delta computation
+  make release && cd build && make && make install
 
 ENV PATH=${PATH}:/root/.local/bin
 
