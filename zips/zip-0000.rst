@@ -1,7 +1,7 @@
 ::
 
   ZIP: 0
-  Title: ZIP Process
+  Title: ZIP Process BLAHDEBLAH
   Owners: Jack Grigg <str4d@electriccoin.co>
           Daira-Emma Hopwood <daira-emma@electriccoin.co>
           Arya <arya@zfnd.org>
