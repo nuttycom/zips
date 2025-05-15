@@ -1,0 +1,14 @@
+name: Check Renderability
+
+on:
+  pull_request:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.7
+
+      - name: Compile ZIPs and Zcash Protocol Specification
+        uses: ./.github/actions/render

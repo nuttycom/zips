@@ -1,4 +1,3 @@
-# Inspired by https://nathan-at-least.github.io/auto-deploy-howto.html
 name: Deploy Rendered Site
 
 on:
@@ -14,8 +13,9 @@ permissions:
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+# Allow only one concurrent deployment, skipping runs queued between the run
+# in-progress and latest queued. However, do NOT cancel in-progress runs as we
+# want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -28,33 +28,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
         with:
+          ref: publish
           fetch-depth: 0
           ssh-key: ${{ secrets.DEPLOY_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Each deploy overwrites the contents of `publish` branch from
-      # `main`, but also introduces a merge structure so that the history of
-      # `publish` is tracked:
-      - name: Overwrite publish branch with main branch
+      - name: Merge `main` to the `publish` branch
         run: |
           set -x
-          BASE_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-          git config --global user.name 'autodeploy'
-          git config --global user.email 'autodeploy'
-          TMP='local-temp-branch'
-          git checkout -b "$TMP" "$BASE_BRANCH" # Same tree state as main branch
-          git merge origin/publish \
-            --commit -m 'Auto-deploy: merging "main" branch'
-          git checkout publish
-          git merge --ff-only "$TMP"
-          git branch -d "$TMP"
+          git config --global user.name 'github_actions'
+          git config --global user.email 'actions@github.com'
+          git merge origin/main --commit -m 'Auto-deploy: merging "main" branch'
 
       - name: Compile ZIPs and Zcash Protocol Specification
         uses: ./.github/actions/render
 
-      - name: Commit and Push to "publish" branch
+      - name: Commit and push to `publish` branch
         uses: EndBug/add-and-commit@v9.1.4
         with:
           add: 'rendered'
